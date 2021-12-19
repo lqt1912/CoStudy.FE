@@ -19,6 +19,11 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { UIService } from './shared/ui.service';
 import { AuthModule } from './auth/auth.module';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { HttpClientModule } from '@angular/common/http';
+import { CustomAuthService } from './auth/custom-auth.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PostsModule } from './posts/posts.module';
+import { ReportServices } from './utilities/report.services';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,13 +42,18 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    HttpClientModule,
+    NgbModule, 
+    PostsModule
   ],
   providers: [
     AuthService,
+    CustomAuthService,
     AuthGuard,
     TrainingService,
-    UIService
+    UIService,
+    ReportServices
   ],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingComponent]

@@ -1,0 +1,16 @@
+.card-body {
+  line-height: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.card {
+  padding: 10px;
+}
+.btn-report {
+  border: none;
+}
+
+.btn-report:hover {
+  background-color: rgb(194, 193, 193);
+}

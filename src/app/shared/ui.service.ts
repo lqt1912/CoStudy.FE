@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from "@angular/material/snack-bar";
 import { Subject } from "rxjs";
 
 @Injectable()
@@ -12,5 +12,16 @@ export class UIService {
         this.snackbar.open(message, action, {
             duration: _duration
         })
+    }
+
+    showSnackbarWithDirection(message: string, action: string, _duration: number, _h: MatSnackBarHorizontalPosition, _v: MatSnackBarVerticalPosition) {
+        this.snackbar.open(
+            message, action,
+            {
+                verticalPosition: _v,
+                horizontalPosition: _h,
+                duration: _duration
+            }
+        )
     }
 }

@@ -1,0 +1,88 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <button (click)="loadTimeline()">Load Timeline</button>
+      <button (click)="scollll.scroll({
+        top: 0,
+        behavior: 'smooth'
+      })">scroll to top</button>
+    </div>
+    <div
+      class="col-8"
+      #scollll
+      id="scrolllll"
+      infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="onScroll()"
+      [scrollWindow]="false"
+      style="height: 100vh; overflow-y: scroll"
+
+    >
+      <mat-card *ngFor="let item of dataSource" class="example-card">
+        <div class="row d-flex">
+          <div class="col-11">
+            <mat-card-header>
+              <img mat-card-avatar [src]="item.author_avatar" alt="" />
+              <mat-card-title>{{ item.title }}</mat-card-title>
+              <mat-card-subtitle
+                >{{ item.author_name }} - {{ convertedDate(item.created_date) }}
+              </mat-card-subtitle>
+            </mat-card-header>
+          </div>
+          <div class="col-1">
+            <button class="btn btn-post-setting" (click)="openModal(item.oid)">
+              <mat-icon>more_horiz</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row p-2">
+          <div class="col-3" *ngFor="let img of item.image_contents">
+            <img
+              mat-card-image
+              [src]="img.image_hash"
+              alt="Photo of a Shiba Inu"
+            />
+          </div>
+        </div>
+
+        <mat-card-content>
+          <p *ngFor="let str of item.string_contents">
+            {{ str.content }}
+          </p>
+        </mat-card-content>
+        <div class="row d-flex">
+          <button class="m-1 btn-field" *ngFor="let btn of item.field">
+            {{ btn.field_name }}
+          </button>
+        </div>
+        <mat-card-actions class="d-flex justify-content-between">
+          <button mat-button>
+            <span class="bottom-label" *ngIf="item.upvote !== 0">{{
+              item.upvote
+            }}</span>
+            <mat-icon>thumb_up</mat-icon>
+            Thích
+          </button>
+          <button mat-button>
+            <span class="bottom-label" *ngIf="item.comments_count !== 0">{{
+              item.comments_count
+            }}</span>
+
+            <mat-icon>comment</mat-icon>
+            Bình luận
+          </button>
+          <button mat-button>
+            <span class="bottom-label" *ngIf="item.downvote !== 0">
+              {{ item.downvote }}</span
+            >
+            <mat-icon>thumb_down</mat-icon>
+            Không thích
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="col-2"></div>
+  </div>
+</div>

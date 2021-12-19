@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 export class SignupComponent implements OnInit, OnDestroy {
 
   maxDate: any;
-  loadingSubs: Subscription;
+  loadingSubs: Subscription = new Subscription();
   isLoading: boolean = false;
 
 
@@ -31,8 +31,6 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value.email);
-    console.log(form.value.password);
 
     this.authService.registerUser({
       email: form.value.email,

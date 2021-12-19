@@ -10,7 +10,7 @@ import { TrainingService } from './training.service';
 export class TrainingComponent implements OnInit, OnDestroy {
 
   ongoingTraining = false;
-  excerciseSubcription: Subscription;
+  excerciseSubcription: Subscription = new Subscription();
 
   constructor(private trainingService: TrainingService) { }
   ngOnDestroy(): void {

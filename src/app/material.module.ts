@@ -36,7 +36,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         MatTableModule,
         MatSortModule,
         MatPaginatorModule,
-        MatSnackBarModule],
+        MatSnackBarModule,
+    MatSelectModule],
     exports: [
         MatButtonModule,
         MatFormFieldModule,
@@ -55,5 +56,5 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         MatTableModule,
         MatSortModule,
         MatPaginatorModule,
-        MatSnackBarModule]
+        MatSnackBarModule, MatSelectModule]
 }) export class MaterialModule { }
