@@ -2,10 +2,16 @@
   <div class="row">
     <div class="col-2">
       <button (click)="loadTimeline()">Load Timeline</button>
-      <button (click)="scollll.scroll({
-        top: 0,
-        behavior: 'smooth'
-      })">scroll to top</button>
+      <button
+        (click)="
+          scollll.scroll({
+            top: 0,
+            behavior: 'smooth'
+          })
+        "
+      >
+        scroll to top
+      </button>
     </div>
     <div
       class="col-8"
@@ -15,10 +21,10 @@
       [infiniteScrollDistance]="2"
       [infiniteScrollThrottle]="50"
       (scrolled)="onScroll()"
-      [scrollWindow]="false"
+      [scrollWindow]="false" 
       style="height: 100vh; overflow-y: scroll"
-
     >
+      <app-new-post></app-new-post>
       <mat-card *ngFor="let item of dataSource" class="example-card">
         <div class="row d-flex">
           <div class="col-11">

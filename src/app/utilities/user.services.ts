@@ -1,14 +1,13 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
 import { AppConstants } from "../constants/app-constant";
 
 @Injectable()
-export class PostsService {
-    constructor(
-        private http: HttpClient,
-        private router: Router
-    ) { }
+export class UserServices {
+
+    constructor(private http: HttpClient) {
+
+    }
 
     getConfig() {
         let _loginInfo = localStorage.getItem('loginInfo');
@@ -17,16 +16,15 @@ export class PostsService {
             return {
                 Authorization: loginInfo.jwtToken
             }
-        } else return {
+        }
+        return {
             Authorization: ''
         }
     }
-    getTimeline(skip: number, count: number) {
-        return this.http.post(`${AppConstants.ServerUrl}api/Post/timeline`, {
-            skip: skip,
-            count: count
-        }, {
+
+    getCurrentUser() {
+        return this.http.get(`${AppConstants.ServerUrl}api/User/current`, {
             headers: this.getConfig()
-        })
+        });
     }
 }

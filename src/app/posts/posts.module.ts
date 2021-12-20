@@ -8,11 +8,14 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
 import { PostTimelineComponent } from "./post-timeline/post-timeline.component";
 import { PostsRoutingModule } from "./posts.routing";
 import { PostsService } from "./posts.service";
+import { NewPostComponent } from './new-post/new-post.component';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
     declarations: [
         PostDetailComponent,
-        PostTimelineComponent
+        PostTimelineComponent,
+        NewPostComponent
     ],
     imports: [
         CommonModule,
@@ -20,7 +23,8 @@ import { PostsService } from "./posts.service";
         MaterialModule, 
         MatIconModule,
         InfiniteScrollModule,
-        NgbModule
+        NgbModule,
+        FormsModule
     ],
     providers:[
         PostsService

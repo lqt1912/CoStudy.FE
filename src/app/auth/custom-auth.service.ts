@@ -10,22 +10,23 @@ import { LoginResult } from "./model/custom-login.model";
 @Injectable()
 export class CustomAuthService {
     authChange = new Subject<boolean>();
-    private isAuthenticated: boolean =false;
+    loginChange = new Subject<string>();
+    isAuthenticated: boolean = false;
 
     constructor(
-        private http: HttpClient, 
+        private http: HttpClient,
         private router: Router) { }
 
     login(_username: string, _password: string): Observable<any> {
-        return this.http.post(`${AppConstants.ServerUrl}api/Accounts/login`,{
+        return this.http.post(`${AppConstants.ServerUrl}api/Accounts/login`, {
             email: _username,
             password: _password
         });
     }
 
-    initAuthListener(){
+    initAuthListener() {
         let loginInfo = JSON.parse(localStorage.getItem('loginInfo'));
-        if(!loginInfo){
+        if (!loginInfo) {
             this.isAuthenticated = false;
             this.authChange.next(false);
             this.router.navigate(['/login']);
@@ -38,13 +39,17 @@ export class CustomAuthService {
         }
     }
 
-    logout(){
+    logout() {
         localStorage.removeItem('loginInfo');
+        localStorage.removeItem('currentUser');
         this.authChange.next(false);
         this.router.navigate(['/login']);
     }
 
-    isAuth(){
+    isAuth() {
         return this.isAuthenticated;
+    }
+    setIsAuth() {
+        this.isAuthenticated = true;
     }
 }

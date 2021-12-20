@@ -67,6 +67,7 @@ export class PostTimelineComponent implements OnInit {
       this.uiService.showSnackbar(error.message, "", 3000);
     })
   }
+  
   openModal(postId: string){
     let modalRef = this.modalService.open(ModalDialogComponent,{
       size: 'md',

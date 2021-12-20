@@ -1,0 +1,46 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <img mat-card-avatar [src]="currentUser?.avatar_hash" alt="" />
+    <mat-card-title>{{ currentUser?.full_name }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-form-field
+    class="example-full-width pt-2"
+    appearance="fill"
+    style="width: 100%"
+  >
+    <mat-label>Tạo bài viết</mat-label>
+    <textarea style="height: 200px" matInput placeholder="Ex. 100 Main St"></textarea>
+  </mat-form-field>
+
+  <mat-card-actions class="d-flex justify-content-between">
+    <div>
+      <button mat-button (click)="imageSelector.click()">
+        <mat-icon>add_photo_alternate</mat-icon>
+        Chọn hình ảnh
+      </button>
+      <button mat-button>
+        <mat-icon>assistant_photo</mat-icon>
+        Chọn lĩnh vực
+      </button>
+      <button mat-button>
+        <mat-icon>spellcheck</mat-icon>
+        Công thức
+      </button>
+    </div>
+    <div>
+      <button mat-button>
+        <mat-icon>send</mat-icon>
+        Đăng bài
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>
+
+<input
+  #imageSelector
+  type="file"
+  [(ngModel)]="fileInput"
+  style="display: none"
+  (ngModelChange)="selectImage()"
+/>

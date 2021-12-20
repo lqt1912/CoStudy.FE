@@ -4,26 +4,25 @@
       <mat-icon>menu</mat-icon>
     </button>
   </div>
-  <div><a routerLink="/">LOGO</a></div>
+  <div><a routerLink="/posts">LOGO</a></div>
   <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
     <ul fxLayout fxLayoutGap="10px" class="navigation-items">
       <li *ngIf="!isAuth">
-        <a routerLink="/signup">Sign up</a>
+        <a routerLink="/signup">Đăng kí</a>
       </li>
       <li *ngIf="!isAuth">
-        <a routerLink="/login">Login</a>
+        <a routerLink="/login">Đăng nhập</a>
       </li>
-      <li *ngIf="isAuth">
-        <a routerLink="/training">Training</a>
-      </li>
-      <li *ngIf="isAuth">
-        <a style="cursor: pointer" (click)="onLogout()">Logout</a>
-      </li>
-      <li >
-        <a style="cursor: pointer;" routerLink="posts">
-          Posts
+      <li  ngbDropdown display="dynamic" placement="bottom-right" *ngIf="isAuth">
+        <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button" style="cursor: pointer;">
+          Xin chào <span style="font-weight: bold;">{{currentUser? currentUser.full_name : currentUserName}}</span>
         </a>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
+          <a ngbDropdownItem href="#" (click)="onLogout()">Đăng xuất</a>
+        </div>
       </li>
     </ul>
   </div>
 </mat-toolbar>
+
+

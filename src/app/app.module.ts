@@ -24,6 +24,7 @@ import { CustomAuthService } from './auth/custom-auth.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PostsModule } from './posts/posts.module';
 import { ReportServices } from './utilities/report.services';
+import { UserServices } from './utilities/user.services';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +54,8 @@ import { ReportServices } from './utilities/report.services';
     AuthGuard,
     TrainingService,
     UIService,
-    ReportServices
+    ReportServices,
+    UserServices
   ],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingComponent]
