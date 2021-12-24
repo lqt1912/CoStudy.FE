@@ -4,14 +4,76 @@
     <mat-card-title>{{ currentUser?.full_name }}</mat-card-title>
   </mat-card-header>
 
+
+  <mat-form-field class="example-full-width w-100 pt-2" appearance="fill">
+    <mat-label>Tiêu đề bài viết</mat-label>
+    <input matInput placeholder="Ex. Pizza" [(ngModel)]="title" placeholder="Tiêu đề bài viết" >
+  </mat-form-field>
+
   <mat-form-field
-    class="example-full-width pt-2"
+    class="example-full-width pt-0"
     appearance="fill"
     style="width: 100%"
   >
-    <mat-label>Tạo bài viết</mat-label>
-    <textarea style="height: 200px" matInput placeholder="Ex. 100 Main St"></textarea>
+    <mat-label>Nội dung bài viết </mat-label>
+    <textarea
+      style="height: 200px"
+      matInput
+      placeholder="Ex. 100 Main St"
+      [(ngModel)]="postContent"
+    ></textarea>
   </mat-form-field>
+  <div class="row flex-wrap">
+    <div id="image-preview" style="max-height: 150px" class="d-flex">
+      <div class="img-wrap" *ngFor="let item of filePreviews">
+        <span class="close" (click)="removeFile(item.key)">
+          <mat-icon>close</mat-icon></span
+        >
+        <img
+          [src]="getSantizeUrl(item.blobUrl)"
+          alt=""
+          style="
+            width: 150x;
+            height: 150px;
+            object-fit: fill;
+            border-radius: 10px;
+          "
+          class="p-2"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="row flex-wrap selected-field">
+    <button
+      class="btn btn-field p-1 pl-2 pr-2 m-1"
+      *ngFor="let item of selectedField"
+    >
+      {{ item.value }} - {{ getLevelById(item.levelSelected) }}
+    </button>
+  </div>
+  <div class="card-body">
+    Loại bài viết
+    <input
+      type="checkbox"
+      class="ml-2"
+      [checked]="isPostTypeSelected(1)"
+      (change)="selectPostType(1)"
+    />
+    <label class="pl-1">
+      <span>Chia sẻ </span>
+    </label>
+
+    <input
+      type="checkbox"
+      class="ml-2"
+      [checked]="isPostTypeSelected(0)"
+      (change)="selectPostType(0)"
+    />
+    <label class="pl-1">
+      <span>Câu hỏi </span>
+    </label>
+  </div>
 
   <mat-card-actions class="d-flex justify-content-between">
     <div>
@@ -19,7 +81,7 @@
         <mat-icon>add_photo_alternate</mat-icon>
         Chọn hình ảnh
       </button>
-      <button mat-button>
+      <button mat-button (click)="openModal()">
         <mat-icon>assistant_photo</mat-icon>
         Chọn lĩnh vực
       </button>
@@ -29,18 +91,23 @@
       </button>
     </div>
     <div>
-      <button mat-button>
+      <button mat-button (click)="sendPost()">
         <mat-icon>send</mat-icon>
         Đăng bài
       </button>
     </div>
   </mat-card-actions>
+  <div class="d-flex justify-content-center align-items-center" *ngIf="isLoading">
+    <mat-spinner  ></mat-spinner>
+
+  </div>
+
 </mat-card>
 
 <input
   #imageSelector
   type="file"
-  [(ngModel)]="fileInput"
   style="display: none"
-  (ngModelChange)="selectImage()"
+  multiple
+  (change)="selectImage($event)"
 />

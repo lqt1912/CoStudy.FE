@@ -9,13 +9,15 @@ import { PostTimelineComponent } from "./post-timeline/post-timeline.component";
 import { PostsRoutingModule } from "./posts.routing";
 import { PostsService } from "./posts.service";
 import { NewPostComponent } from './new-post/new-post.component';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FieldSelectDialogComponent } from './field-select-dialog/field-select-dialog.component';
 
 @NgModule({
     declarations: [
         PostDetailComponent,
         PostTimelineComponent,
-        NewPostComponent
+        NewPostComponent,
+        FieldSelectDialogComponent
     ],
     imports: [
         CommonModule,
@@ -24,7 +26,8 @@ import { FormsModule } from "@angular/forms";
         MatIconModule,
         InfiniteScrollModule,
         NgbModule,
-        FormsModule
+        FormsModule, 
+        ReactiveFormsModule
     ],
     providers:[
         PostsService

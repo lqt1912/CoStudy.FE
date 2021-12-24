@@ -1,0 +1,52 @@
+<div class="modal-header">
+  <h2 class="modal-title" id="modal-basic-title">Chọn lĩnh vực </h2>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div *ngFor="let item of fieldSelected">
+    <ng-container>
+      <button
+        type="button"
+        class="btn btn-report btn-block text-left"
+        (click)="collapse.toggle(); selectField(item.oid)"
+        [attr.aria-expanded]="!item.isCollapsed"
+        aria-controls="collapseExample"
+        [ngClass]="{ active: isSelected(item.oid) }"
+      >
+        <div class="row d-flex justify-content-between p-2 pl-3">
+          <p class="mb-0">
+            {{ item.value }}
+            <span *ngIf="getLevelById(item.levelSelected) !== ''">
+              - {{ getLevelById(item.levelSelected) }}
+            </span>
+          </p>
+          <p class="mb-0">
+            <mat-icon *ngIf="item.isCollapsed">expand_less</mat-icon>
+            <mat-icon *ngIf="!item.isCollapsed">expand_more</mat-icon>
+          </p>
+        </div>
+      </button>
+
+      <div #collapse="ngbCollapse" [(ngbCollapse)]="item.isCollapsed">
+        <div class="card level-container">
+          <div class="card-body" *ngFor="let lvl of levels">
+            <input
+              type="checkbox"
+              [checked]="isLevelSelected(item, lvl.oid)"
+              (change)="selectLevel(item, lvl.oid)"
+            />
+            <label [for]="item.oid" class="pl-1"> {{ lvl.name }}</label
+            ><br />
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+.card-body {
+  padding: 0px;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+.active {
+  color: blue;
+}
+.card {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+.modal-body{
+  max-height: 400px;
+  overflow-y: scroll;
+}
+.level-container{
+  max-height: 250px;
+  overflow-y: scroll;
+}

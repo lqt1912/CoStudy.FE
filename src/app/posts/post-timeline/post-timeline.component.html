@@ -3,14 +3,17 @@
     <div class="col-2">
       <button (click)="loadTimeline()">Load Timeline</button>
       <button
+        class="btn btn-light go-to-top"
+        *ngIf="isGoToTop"
         (click)="
           scollll.scroll({
             top: 0,
             behavior: 'smooth'
-          })
+          }); 
+          isGoToTop = false;
         "
       >
-        scroll to top
+        <mat-icon>expand_less</mat-icon>
       </button>
     </div>
     <div
@@ -21,10 +24,19 @@
       [infiniteScrollDistance]="2"
       [infiniteScrollThrottle]="50"
       (scrolled)="onScroll()"
-      [scrollWindow]="false" 
+      [scrollWindow]="false"
       style="height: 100vh; overflow-y: scroll"
     >
-      <app-new-post></app-new-post>
+      <mat-card
+        (click)="collapse.toggle()"
+        [attr.aria-expanded]="!isCollapsed"
+        class="new-post-card"
+        >Tạo bài viết mới</mat-card
+      >
+      <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+        <app-new-post></app-new-post>
+      </div>
+
       <mat-card *ngFor="let item of dataSource" class="example-card">
         <div class="row d-flex">
           <div class="col-11">
@@ -88,6 +100,7 @@
           </button>
         </mat-card-actions>
       </mat-card>
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
     </div>
     <div class="col-2"></div>
   </div>

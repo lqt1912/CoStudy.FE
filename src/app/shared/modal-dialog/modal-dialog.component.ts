@@ -1,5 +1,5 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TransitionCheckState } from '@angular/material/checkbox';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,7 +16,8 @@ import { UIService } from '../ui.service';
 export class ModalDialogComponent implements OnInit {
 
   @Input() postId: string = '';
-
+  @Input() isAuthor: boolean = false;
+  @Output() deletePost = new EventEmitter()
   constructor(
     public activeModal: NgbActiveModal,
     private reportService: ReportServices,
@@ -64,7 +65,11 @@ export class ModalDialogComponent implements OnInit {
 
   report() {
     console.log(this.reportReasonsSubmit.filter(x => x.isSelected === true));
-    this.activeModal.dismiss(); 
+    this.activeModal.dismiss();
     this.uiService.showSnackbarWithDirection(this.postId, "close", 2000, 'end', 'top')
+  }
+  deleteMyPost() {
+    this.activeModal.close()
+    this.deletePost.emit(this.postId);
   }
 }

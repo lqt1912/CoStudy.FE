@@ -31,9 +31,28 @@
   outline: none;
 }
 
-.btn-post-setting:hover, :focus, :active {
+.btn-post-setting:hover,
+:focus,
+:active {
   background-color: white;
   color: black;
   border: none;
 }
+.new-post-card {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.new-post-card:hover {
+  cursor: pointer;
+}
 
+.go-to-top {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 100;
+  border: 1px solid rgb(187, 187, 187);
+}
+.go-to-top :hover {
+  cursor: pointer;
+}

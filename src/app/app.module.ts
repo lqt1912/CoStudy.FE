@@ -25,6 +25,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PostsModule } from './posts/posts.module';
 import { ReportServices } from './utilities/report.services';
 import { UserServices } from './utilities/user.services';
+import { FieldServices } from './utilities/field.services';
+import { LevelServices } from './utilities/level.service';
+import { FileService } from './utilities/file.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +58,10 @@ import { UserServices } from './utilities/user.services';
     TrainingService,
     UIService,
     ReportServices,
-    UserServices
+    UserServices, 
+    FieldServices,
+    LevelServices,
+    FileService
   ],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingComponent]
